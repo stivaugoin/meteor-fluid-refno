@@ -9,4 +9,5 @@ Package.describe({
 Package.onUse(function(api) {
 	api.versionsFrom('1.0');
 	api.addFiles('refno.js');
+	api.export("RefNo");
 });
