@@ -1,12 +1,12 @@
 RefNo = {
-	generate: function(collection, options) {
+	generate: function(collection, prefix, options) {
 		if (!collection) { throw new Error('"collection" is missing. Exemple: "individual"'); }
-		if (!options.prefix) { throw new Error('"prefix" is missing. Exemple "I-"'); }
+		if (!prefix) { throw new Error('"prefix" is missing. Exemple "I-"'); }
 		if (!options.size) { options.size = 5 }
 		if (!options.filling) { options.filling = 0 }
 
 		var sequence = getNextSequence(collection);
-		return options.prefix + strPad(sequence, options.size, options.filling);
+		return prefix + strPad(sequence, options.size, options.filling);
 	},
 
 	reset: function(collection) {
@@ -33,4 +33,9 @@ function setSequence(collection, number) {
 		{collection: collection},
 		{$set: { seq: number }}
 	);
+}
+
+function strPad(input, length, string) {
+	string = string || '0'; input = input + '';
+	return input.length >= length ? input : new Array(length - input.length + 1).join(string) + input;
 }
