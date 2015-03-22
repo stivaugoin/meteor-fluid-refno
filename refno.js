@@ -26,7 +26,7 @@ function getNextSequence(collection) {
 		},
 		{upsert: true}
 	);
-	var counter = Counters.findOne({collection: collection});
+	var counter = RefNoCounters.findOne({collection: collection});
 	return counter.seq;
 }
 
