@@ -1,6 +1,6 @@
 Package.describe({
 	name: 'stivaugoin:refno',
-	version: '0.0.1',
+	version: '0.0.2',
 	summary: 'Manage Reference Number',
 	git: 'https://github.com/stivaugoin/meteor-refno.git',
 	documentation: 'README.md'
@@ -8,6 +8,10 @@ Package.describe({
 
 Package.onUse(function(api) {
 	api.versionsFrom('1.0');
-	api.addFiles('refno.js');
-	api.export("RefNo");
+	api.addFiles('refno.js', 'client');
+
+	if (api.export) {
+		api.export("RefNo");
+	}
+
 });
