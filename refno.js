@@ -14,9 +14,9 @@ RefNo = {
 	}
 };
 
-Counters = new Meteor.Collection('counters');
+RefNoCounters = new Meteor.Collection('refNoCounter');
 function getNextSequence(collection) {
-	Counters.update(
+	RefNoCounters.update(
 		{collection: collection},
 		{
 			$set: {collection: collection},
@@ -29,7 +29,7 @@ function getNextSequence(collection) {
 }
 
 function setSequence(collection, number) {
-	Counters.update(
+	RefNoCounters.update(
 		{collection: collection},
 		{$set: { seq: number }}
 	);
