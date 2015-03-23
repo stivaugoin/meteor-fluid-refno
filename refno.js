@@ -1,4 +1,4 @@
-RefNo = {
+/*var RefNo = {
 	generate: function(collection, prefix, options) {
 		if (!collection) { throw new Error('"collection" is missing. Exemple: "individual"'); }
 		if (!prefix) { throw new Error('"prefix" is missing. Exemple "I-"'); }
@@ -14,6 +14,21 @@ RefNo = {
 	reset: function(collection) {
 		setSequence(collection, 0);
 	}
+};*/
+generateRefNo = function(collection, prefix, options) {
+	if (!collection) { throw new Error('"collection" is missing. Exemple: "individual"'); }
+	if (!prefix) { throw new Error('"prefix" is missing. Exemple "I-"'); }
+	if (options) {
+		if (!options.size) { options.size = 5 }
+		if (!options.filling) { options.filling = 0 }
+	}
+
+	var sequence = getNextSequence(collection);
+	return prefix + strPad(sequence, options.size, options.filling);
+};
+
+resetRefNo = function(collection) {
+	setSequence(collection, 0);
 };
 
 RefNoCounters = new Meteor.Collection('refNoCounter');
