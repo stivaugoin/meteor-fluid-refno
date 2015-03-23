@@ -1,6 +1,6 @@
 Package.describe({
 	name: 'stivaugoin:refno',
-	version: '0.0.6',
+	version: '0.0.7',
 	summary: 'Manage Reference Number',
 	git: 'https://github.com/stivaugoin/meteor-refno.git',
 	documentation: 'README.md'
