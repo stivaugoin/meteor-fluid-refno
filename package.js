@@ -1,17 +1,19 @@
 Package.describe({
-	name: 'stivaugoin:refno',
-	version: '0.0.7',
+	name: 'stivaugoin:fluid-refno',
+	version: '0.0.1',
 	summary: 'Manage Reference Number',
-	git: 'https://github.com/stivaugoin/meteor-refno.git',
+	git: 'https://github.com/stivaugoin/meteor-fluid-refno.git',
 	documentation: 'README.md'
 });
 
 Package.onUse(function(api) {
 	api.versionsFrom('1.0');
-	api.use(['mongo-livedata']);
-	api.addFiles('refno.js');
-	if (api.export) {
-		api.export('generateRefNo');
-		api.export('resetRefNo');
-	}
+
+	api.use(['mongo-livedata', 'stivaugoin:fluid-counter']);
+
+	api.export('generateRefNo', 'server');
+	api.export('setRefNo', 'server');
+	api.export('resetRefNo', 'server');
+
+	api.addFiles('refno.js', 'server');
 });

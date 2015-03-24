@@ -1,38 +1,29 @@
-generateRefNo = function(collection, prefix, options) {
-	if (!collection) { throw new Error('"collection" is missing. Exemple: "individual"'); }
-	if (!prefix) { throw new Error('"prefix" is missing. Exemple "I-"'); }
-	if (options) {
-		if (!options.size) { options.size = 5 }
-		if (!options.filling) { options.filling = 0 }
-	}
+if (Meteor.isServer) {
+	generateRefNo = function(options) {
+		var name = options.name || 'counter';
+		var prefix = options.prefix || '';
+		var size = options.size || 5;
+		var filling = options.filling || '0';
 
-	var sequence = getNextSequence(collection);
-	return prefix + strPad(sequence, options.size, options.filling);
-};
+		var sequence = getNextSequence(name);
+		return prefix + strPad(sequence, size, filling);
+	};
 
-resetRefNo = function(collection) {
-	setSequence(collection, 0);
-};
+	setRefNo = function(options) {
+		var name = options.name || 'counter';
+		if (!options.value) {
+			throw new Error('Value missing! try: setRefNo({value: 0});')
+		} else {
+			var value = options.value;
+		}
 
-RefNoCounters = new Meteor.Collection('refNoCounter');
-function getNextSequence(collection) {
-	RefNoCounters.update(
-		{collection: collection},
-		{
-			$set: {collection: collection},
-			$inc: {seq: 1}
-		},
-		{upsert: true}
-	);
-	var counter = RefNoCounters.findOne({collection: collection});
-	return counter.seq;
-}
+		setSequence(name, value);
+	};
 
-function setSequence(collection, number) {
-	RefNoCounters.update(
-		{collection: collection},
-		{$set: { seq: number }}
-	);
+	resetRefNo = function(options) {
+		var name = options.name || 'counter';
+		setSequence(name, 0);
+	};
 }
 
 function strPad(input, length, string) {

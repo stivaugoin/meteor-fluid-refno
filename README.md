@@ -1,25 +1,46 @@
-# meteor-refno
+# meteor-fluid-refno
 Manage Reference Number
 
 ## Installation
 
 ```
-meteor add stivaugoin:refno
+meteor add stivaugoin:fluid-refno
 ```
 
 ## Usage
-### Generate new RefNo
+### generateRefNo
+Generate new RefNo
 ``` js
-generateRefNo('individual', 'I-', {size: 5, filling: '0'});
-// output: "I-00001"
+generateRefNo(collectionName, prefix, options);
+
+Exemple:
+var refNo = generateRefNo({
+		name: 'invoices', // default: 'counter'
+		prefix: 'I-',  // default: ''
+		size: 5, // default: 5
+		filling: '0' // default: '0'
+	});
+
+console.log(refNo); // output: "I-00001"
+
+var refNo = generateRefNo({
+		name: 'invoices', // default: 'counter'
+		prefix: 'I-',  // default: ''
+		size: 5, // default: 5
+		filling: '0' // default: '0'
+	});
+
+console.log(refNo); // output: "I-00002"
 ```
 
-### Reset RefNo
+### resetRefNo
+Reset RefNo
 ``` js
-resetRefNo('individual');
+resetRefNo(collectionName);
 
-// next refNo will be "I-00001"
+Exemple:
+resetRefNo('invoices'); // The sequence of refno 'invoices' will now be 1.
 ```
 
 ## Licence
-The MIT License (MIT)
+MIT
