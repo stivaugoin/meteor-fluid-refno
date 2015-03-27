@@ -9,7 +9,7 @@ Package.describe({
 Package.onUse(function(api) {
 	api.versionsFrom('1.0');
 
-	api.use(['mongo-livedata', 'stivaugoin:fluid-counter']);
+	api.use(['mongo-livedata', 'stivaugoin:fluid-counter@0.0.1']);
 
 	api.export('generateRefNo', 'server');
 	api.export('setRefNo', 'server');
