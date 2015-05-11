@@ -11,7 +11,7 @@ meteor add stivaugoin:fluid-refno
 ### generateRefNo
 Generate new RefNo
 ``` js
-generateRefNo(collectionName, prefix, options);
+generateRefNo(options);
 
 Exemple:
 var refNo = generateRefNo({
