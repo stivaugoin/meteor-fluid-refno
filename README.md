@@ -13,6 +13,8 @@ Generate new RefNo
 ``` js
 generateRefNo(options);
 
+On server
+
 Exemple:
 var options = {
 	name: 'invoices', // default: 'counter'
@@ -20,10 +22,13 @@ var options = {
 	size: 5, // default: 5
 	filling: '0' // default: '0'
 }
-var refNo1 = generateRefNo(options);
-var refNo2 = generateRefNo(options);
-var refNo3 = generateRefNo(options);
-var refNo4 = generateRefNo(options);
+
+if (Meteor.isServer) {
+	var refNo1 = generateRefNo(options);
+	var refNo2 = generateRefNo(options);
+	var refNo3 = generateRefNo(options);
+	var refNo4 = generateRefNo(options);
+}
 
 console.log(refNo1); // output: "I-00001"
 console.log(refNo2); // output: "I-00002"
